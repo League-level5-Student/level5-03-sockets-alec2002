@@ -26,7 +26,6 @@ public class ChatAppServer {
 
 	public void start(){
 		try {
-			System.out.println("Server working");
 			server = new ServerSocket(port, 100);
 
 			connection = server.accept();
@@ -37,7 +36,6 @@ public class ChatAppServer {
 			os.flush();
 
 			while (connection.isConnected()) {
-				System.out.println("Server connected");
 				try {
 					JOptionPane.showMessageDialog(null, is.readObject());
 					System.out.println(is.readObject());
@@ -64,11 +62,11 @@ public class ChatAppServer {
 		return port;
 	}
 
-	public void sendMessage(String message) {
+	public void sendClick() {
 		try {
-			System.out.println("Server is sending message");
 			if (os != null) {
-				os.writeObject(message);
+				String messs = JOptionPane.showInputDialog("Type your message");
+				os.writeObject(messs + " sent from server");
 				os.flush();
 			}
 		} catch (IOException e) {
@@ -76,4 +74,3 @@ public class ChatAppServer {
 		}
 	}
 }
-

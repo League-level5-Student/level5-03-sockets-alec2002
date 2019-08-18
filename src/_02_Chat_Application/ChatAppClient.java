@@ -27,7 +27,7 @@ public class ChatAppClient {
 
 	public void start(){
 		try {
-			System.out.println("client working");
+
 			connection = new Socket(ip, port);
 
 			os = new ObjectOutputStream(connection.getOutputStream());
@@ -43,7 +43,6 @@ public class ChatAppClient {
 		
 		while (connection.isConnected()) {
 			try {
-				System.out.println("client is connected");
 				JOptionPane.showMessageDialog(null, is.readObject());
 				System.out.println(is.readObject());
 			} catch (Exception e) {
@@ -53,11 +52,11 @@ public class ChatAppClient {
 		}
 	}
 	
-	public void sendMessage(String message) {
+	public void sendClick() {
 		try {
-			System.out.println("Client is sending message");
 			if (os != null) {
-				os.writeObject(message);
+				String mess = JOptionPane.showInputDialog("Type your message");
+				os.writeObject(mess + " sent from client");
 				os.flush();
 			}
 		} catch (IOException e) {
